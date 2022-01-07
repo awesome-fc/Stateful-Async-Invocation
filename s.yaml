@@ -1,0 +1,13 @@
+edition: 1.0.0
+name: transform_fun
+access: default
+vars:
+  region: cn-shanghai
+services:
+  transform_fun:
+    component: devsapp/ros
+    props:
+      name: '****'
+      region: ${vars.region}
+      template: >-
+        ./s.yaml.json

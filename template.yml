@@ -32,6 +32,7 @@ Resources:
                   - fc:InvokeFunction
                   - mns:PublishMessage
                   - mns:SendMessage
+                  - log:*
                 Resource:
                   - '*'
 

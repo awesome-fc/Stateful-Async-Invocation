@@ -11,7 +11,7 @@
 1. 在控制台创建一个 mns 队列，如名称为 stateful-invocation-dlq；
 2. 更新 [fun](https://help.aliyun.com/document_detail/140283.html) 工具版本 > 3.6.18，并配置好 fun 工具；
 3. git clone 本项目。更改 template.yml 第 99/100 行 mns 队列为实际资源 ARN（请将 {please_replace_me} 替换为您队列的名称），
-并在项目目录中执行如下命令： `fun deploy --use-ros --stack-name xxxxx`
+并在项目目录中执行如下命令： `fun deploy --use-ros --stack-name xxxxx`，或直接执行 `s deploy -t s.yaml`
 4. 您将看到创建了具有相应的异步配置的函数及 ram 资源。 
 
 注意：操作 fun deploy 前请确认已经更新模板中的队列名称（第 3 步），避免因为消息队列不存在而造成发送目标失败。
