@@ -1,13 +1,29 @@
-edition: 1.0.0
-name: transform_fun
-access: default
-vars:
-  region: cn-shanghai
+edition: 1.0.0          #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范。
+name: stateful-async-inovcation-demo       #  项目名称。
+access: default         #  密钥别名。
+
 services:
-  transform_fun:
-    component: devsapp/ros
-    props:
-      name: '****'
-      region: ${vars.region}
-      template: >-
-        ./s.yaml.json
+  fc-job: #  服务名称。
+    component: devsapp/fc  # 组件名称。
+    props: #  组件的属性值。
+      region: cn-shanghai
+      service:
+        name: fc-job
+        description: demo for fc-job
+        internetAccess: true
+        role: 'acs:ram::{please_replace_me}:role/aliyunfcdefaultrole'
+      function:
+        name: fc-job-function
+        description: 'this is test'
+        codeUri: './code'
+        handler: 'index.handler'
+        memorySize: 128
+        runtime: python3
+        timeout: 60
+        asyncConfiguration:
+          destination:
+            onSuccess: 'acs:mns:::/queues/{please_replace_me}/messages'
+            onFailure: 'acs:mns:::/queues/{please_replace_me}/messages'
+          maxAsyncEventAgeInSeconds: 172800
+          maxAsyncRetryAttempts: 1
+          statefulInvocation: true
